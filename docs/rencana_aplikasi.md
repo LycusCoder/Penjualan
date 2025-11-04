@@ -11,9 +11,9 @@
 - **Anggota**:
   - Muhamad Fahren Andrean Rangkuti
   - Sigit Pratama
-  - Djafar Ilya
+  - Djafar Ilyasa
   - Septina Asti Nabila
-  - Afsani
+  - Afsani Wahyu Mawardi
 
 ---
 
@@ -376,19 +376,30 @@ implementation("com.google.android.material:material:1.11.0")
 
 ## 📅 Timeline Implementasi
 
-### Phase 1: Setup & Database (Hari 1)
+### Phase 1: Setup & Database (Hari 1) ✅ COMPLETED
 - ✅ Setup dependencies (Room, ViewModel, dll)
 - ✅ Buat Entity: Product & Transaction
 - ✅ Buat DAO: ProductDao & TransactionDao
 - ✅ Buat AppDatabase
-- ✅ Seed sample products
+- ✅ Seed sample products (26 produk)
+- ✅ Buat ProductRepository & TransactionRepository
+- ✅ Buat CartItem & TransactionItem data class
+- ✅ Build successful (3m 12s)
 
-### Phase 2: Repository & ViewModel (Hari 1-2)
-- [ ] Buat ProductRepository & TransactionRepository
-- [ ] Buat MainViewModel
-- [ ] Implement CartItem data class
-- [ ] Implement add/remove/update cart logic
-- [ ] Implement checkout logic dengan coroutine
+### Phase 2: ViewModel & Business Logic (Hari 1-2) ✅ COMPLETED
+- ✅ Buat CurrencyUtils (format Rupiah)
+  - formatRupiah(), formatNumber(), parseRupiah()
+- ✅ Buat DateUtils (format tanggal & waktu)
+  - formatDate(), formatTime(), formatDateTime(), getRelativeTimeString()
+- ✅ Buat MainViewModelFactory (dependency injection)
+- ✅ Buat MainViewModel dengan:
+  - ✅ LiveData untuk products, cart, subtotal, loading, errors
+  - ✅ Cart operations (add/remove/update/increment/decrement)
+  - ✅ Checkout logic dengan stock update & transaction save
+  - ✅ Search/filter functionality
+  - ✅ Auto-calculate subtotal
+  - ✅ Stock validation
+  - ✅ Error handling
 
 ### Phase 3: UI Components (Hari 2-3)
 - [ ] Layout MainActivity (2 kolom)
