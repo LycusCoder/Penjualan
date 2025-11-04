@@ -1,3 +1,32 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">MiniQasir</string>
+    
+    <!-- Main Activity Strings -->
+    <string name="toolbar_title">🐪 MiniQasir PoS</string>
+    <string name="search_hint">Cari produk...</string>
+    <string name="products_header">📦 DAFTAR PRODUK</string>
+    <string name="cart_header">🛒 KERANJANG BELANJA</string>
+    <string name="empty_products">Tidak ada produk</string>
+    <string name="empty_cart">Keranjang kosong</string>
+    <string name="subtotal_label">SUBTOTAL:</string>
+    <string name="btn_clear_cart">🗑 KOSONGKAN KERANJANG</string>
+    <string name="btn_checkout">💳 CHECKOUT</string>
+    
+    <!-- Payment Dialog Strings -->
+    <string name="dialog_payment_title">💳 PEMBAYARAN</string>
+    <string name="total_payment_label">Total Pembayaran:</string>
+    <string name="money_paid_hint">Jumlah uang dibayar</string>
+    <string name="quick_amount_label">Uang Pas:</string>
+    <string name="change_label">Kembalian:</string>
+    <string name="error_insufficient_money">⚠ Uang tidak cukup!</string>
+    <string name="btn_cancel">BATAL</string>
+    <string name="btn_confirm_payment">✓ BAYAR</string>
+    <string name="btn_exact_amount">💰 Uang Pas</string>
+    
+    <!-- Messages -->
+    <string name="msg_added_to_cart">✓ Ditambahkan ke keranjang</string>
+    <string name="msg_cart_cleared">Keranjang dikosongkan</string>
+    <string name="msg_checkout_success">✓ Transaksi berhasil!</string>
+    <string name="msg_stock_not_enough">Stock tidak mencukupi</string>
+    <string name="msg_cart_empty_checkout">Keranjang belanja kosong</string>
 </resources>

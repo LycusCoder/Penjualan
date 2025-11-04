@@ -18,13 +18,13 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/primary_camel"
             app:titleTextColor="@android:color/white">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="QuickSell PoS"
+                android:text="🐪 MiniQasir PoS"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white" />
@@ -75,7 +75,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:padding="12dp"
-                    android:background="#2196F3"
+                    android:background="@color/sky_blue"
                     android:textColor="@android:color/white" />
 
                 <!-- RECYCLERVIEW PRODUK -->
@@ -124,7 +124,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:padding="12dp"
-                    android:background="#4CAF50"
+                    android:background="@color/oasis_green"
                     android:textColor="@android:color/white" />
 
                 <!-- RECYCLERVIEW KERANJANG -->
@@ -187,7 +187,7 @@
                             android:text="Rp 0"
                             android:textSize="20sp"
                             android:textStyle="bold"
-                            android:textColor="#4CAF50" />
+                            android:textColor="@color/oasis_green" />
 
                     </LinearLayout>
 
@@ -211,7 +211,7 @@
                         android:text="💳 CHECKOUT"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:backgroundTint="#4CAF50"
+                        android:backgroundTint="@color/oasis_green"
                         android:textColor="@android:color/white"
                         android:layout_marginTop="8dp"
                         android:padding="16dp" />

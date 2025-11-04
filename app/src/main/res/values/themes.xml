@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.MyApplication" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- MiniQasir Theme - Timur Tengah Style -->
+    <style name="Theme.MiniQasir" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/primary_camel</item>
+        <item name="colorPrimaryDark">@color/primary_dark_camel</item>
+        <item name="colorAccent">@color/accent_gold</item>
+        
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">@color/primary_dark_camel</item>
+        
+        <!-- Window background -->
+        <item name="android:windowBackground">@color/gray_light</item>
+    </style>
+    
+    <!-- Keep old name for compatibility -->
+    <style name="Theme.MyApplication" parent="Theme.MiniQasir" />
 </resources>
