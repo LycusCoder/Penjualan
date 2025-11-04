@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical">
+
+        <!-- ICON PRODUK -->
+        <TextView
+            android:id="@+id/productIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="🛒"
+            android:textSize="28sp"
+            android:gravity="center"
+            android:background="#E3F2FD"
+            android:layout_marginEnd="12dp" />
+
+        <!-- INFO PRODUK -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- NAMA PRODUK -->
+            <TextView
+                android:id="@+id/textProductName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Produk"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#333333" />
+
+            <!-- HARGA -->
+            <TextView
+                android:id="@+id/textProductPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp 0"
+                android:textSize="14sp"
+                android:textColor="#4CAF50"
+                android:layout_marginTop="2dp" />
+
+            <!-- STOK -->
+            <TextView
+                android:id="@+id/textProductStock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stok: 0"
+                android:textSize="12sp"
+                android:textColor="#999999"
+                android:layout_marginTop="2dp" />
+
+        </LinearLayout>
+
+        <!-- BUTTON ADD -->
+        <Button
+            android:id="@+id/btnAddProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ Tambah"
+            android:textSize="12sp"
+            android:backgroundTint="#2196F3"
+            android:textColor="@android:color/white"
+            android:padding="8dp" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5"
+    tools:context=".MainActivity">
+
+    <!-- HEADER -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:titleTextColor="@android:color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QuickSell PoS"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <!-- SEARCH BAR -->
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@android:color/white"
+            android:elevation="2dp"
+            app:iconifiedByDefault="false"
+            app:queryHint="Cari produk..." />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- MAIN CONTENT: 2 KOLOM -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:padding="8dp">
+
+        <!-- KOLOM KIRI: DAFTAR PRODUK -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!-- HEADER PRODUK -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="📦 DAFTAR PRODUK"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:padding="12dp"
+                    android:background="#2196F3"
+                    android:textColor="@android:color/white" />
+
+                <!-- RECYCLERVIEW PRODUK -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewProducts"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp"
+                    android:clipToPadding="false"
+                    tools:listitem="@layout/item_product" />
+
+                <!-- EMPTY STATE -->
+                <TextView
+                    android:id="@+id/emptyProductsText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Tidak ada produk"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textColor="#999999"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- KOLOM KANAN: KERANJANG -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!-- HEADER KERANJANG -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🛒 KERANJANG BELANJA"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:padding="12dp"
+                    android:background="#4CAF50"
+                    android:textColor="@android:color/white" />
+
+                <!-- RECYCLERVIEW KERANJANG -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewCart"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="8dp"
+                    android:clipToPadding="false"
+                    tools:listitem="@layout/item_cart" />
+
+                <!-- EMPTY CART STATE -->
+                <TextView
+                    android:id="@+id/emptyCartText"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="Keranjang kosong"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textColor="#999999"
+                    android:visibility="gone" />
+
+                <!-- BOTTOM SECTION: SUBTOTAL & CHECKOUT -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:background="#EEEEEE">
+
+                    <!-- DIVIDER -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#CCCCCC"
+                        android:layout_marginBottom="8dp" />
+
+                    <!-- SUBTOTAL -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="SUBTOTAL:"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#333333" />
+
+                        <TextView
+                            android:id="@+id/textSubtotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rp 0"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="#4CAF50" />
+
+                    </LinearLayout>
+
+                    <!-- BUTTON CLEAR CART -->
+                    <Button
+                        android:id="@+id/btnClearCart"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="🗑 KOSONGKAN KERANJANG"
+                        android:textSize="14sp"
+                        android:backgroundTint="#FF5722"
+                        android:textColor="@android:color/white"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp" />
+
+                    <!-- BUTTON CHECKOUT -->
+                    <Button
+                        android:id="@+id/btnCheckout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="💳 CHECKOUT"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:backgroundTint="#4CAF50"
+                        android:textColor="@android:color/white"
+                        android:layout_marginTop="8dp"
+                        android:padding="16dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <!-- LOADING OVERLAY -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+</LinearLayout>

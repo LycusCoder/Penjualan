@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@android:color/white">
+
+    <!-- TITLE -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="💳 PEMBAYARAN"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- DIVIDER -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        android:layout_marginBottom="16dp" />
+
+    <!-- TOTAL AMOUNT -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Total Pembayaran:"
+            android:textSize="16sp"
+            android:textColor="#666666" />
+
+        <TextView
+            android:id="@+id/textTotalAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp 0"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#4CAF50" />
+
+    </LinearLayout>
+
+    <!-- INPUT MONEY -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Jumlah uang dibayar"
+        android:layout_marginBottom="8dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editMoneyPaid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:textSize="18sp"
+            android:padding="16dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- QUICK AMOUNT BUTTONS -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Uang Pas:"
+        android:textSize="14sp"
+        android:textColor="#666666"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/btnQuick10k"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="10K"
+            android:textSize="12sp"
+            android:backgroundTint="#607D8B"
+            android:textColor="@android:color/white"
+            android:layout_margin="4dp" />
+
+        <Button
+            android:id="@+id/btnQuick20k"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="20K"
+            android:textSize="12sp"
+            android:backgroundTint="#607D8B"
+            android:textColor="@android:color/white"
+            android:layout_margin="4dp" />
+
+        <Button
+            android:id="@+id/btnQuick50k"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="50K"
+            android:textSize="12sp"
+            android:backgroundTint="#607D8B"
+            android:textColor="@android:color/white"
+            android:layout_margin="4dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/btnQuick100k"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="100K"
+            android:textSize="12sp"
+            android:backgroundTint="#607D8B"
+            android:textColor="@android:color/white"
+            android:layout_margin="4dp" />
+
+        <Button
+            android:id="@+id/btnExactAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="💰 Uang Pas"
+            android:textSize="12sp"
+            android:backgroundTint="#FF9800"
+            android:textColor="@android:color/white"
+            android:layout_margin="4dp" />
+
+    </LinearLayout>
+
+    <!-- CHANGE AMOUNT (KEMBALIAN) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp"
+        android:padding="12dp"
+        android:background="#FFF3E0">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Kembalian:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#666666" />
+
+        <TextView
+            android:id="@+id/textChangeAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp 0"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#FF9800" />
+
+    </LinearLayout>
+
+    <!-- ERROR MESSAGE -->
+    <TextView
+        android:id="@+id/textErrorMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="⚠ Uang tidak cukup!"
+        android:textSize="14sp"
+        android:textColor="#F44336"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone" />
+
+    <!-- ACTION BUTTONS -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="BATAL"
+            android:textSize="14sp"
+            android:backgroundTint="#9E9E9E"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="8dp"
+            android:padding="14dp" />
+
+        <Button
+            android:id="@+id/btnConfirmPayment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="✓ BAYAR"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:backgroundTint="#4CAF50"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="8dp"
+            android:padding="14dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

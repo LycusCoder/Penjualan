@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- ROW 1: NAMA & HARGA SATUAN -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- NAMA PRODUK -->
+            <TextView
+                android:id="@+id/textCartProductName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nama Produk"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#333333" />
+
+            <!-- HARGA SATUAN -->
+            <TextView
+                android:id="@+id/textCartUnitPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@Rp 0"
+                android:textSize="12sp"
+                android:textColor="#999999" />
+
+        </LinearLayout>
+
+        <!-- ROW 2: QUANTITY CONTROLS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp">
+
+            <!-- BUTTON DECREMENT -->
+            <Button
+                android:id="@+id/btnDecrement"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:text="−"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:backgroundTint="#FF5722"
+                android:textColor="@android:color/white"
+                android:padding="0dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp" />
+
+            <!-- QUANTITY TEXT -->
+            <TextView
+                android:id="@+id/textQuantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="#333333" />
+
+            <!-- BUTTON INCREMENT -->
+            <Button
+                android:id="@+id/btnIncrement"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:text="+"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:backgroundTint="#4CAF50"
+                android:textColor="@android:color/white"
+                android:padding="0dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp" />
+
+        </LinearLayout>
+
+        <!-- ROW 3: SUBTOTAL & REMOVE -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp">
+
+            <!-- SUBTOTAL -->
+            <TextView
+                android:id="@+id/textCartItemTotal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Rp 0"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#4CAF50" />
+
+            <!-- BUTTON REMOVE -->
+            <Button
+                android:id="@+id/btnRemove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🗑 Hapus"
+                android:textSize="12sp"
+                android:backgroundTint="#F44336"
+                android:textColor="@android:color/white"
+                android:padding="8dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

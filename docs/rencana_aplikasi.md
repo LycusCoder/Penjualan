@@ -401,12 +401,31 @@ implementation("com.google.android.material:material:1.11.0")
   - ✅ Stock validation
   - ✅ Error handling
 
-### Phase 3: UI Components (Hari 2-3)
-- [ ] Layout MainActivity (2 kolom)
-- [ ] RecyclerView Adapter untuk Product List
-- [ ] RecyclerView Adapter untuk Cart
-- [ ] Implement SearchView
-- [ ] Design payment dialog
+### Phase 3: UI Components (Hari 2-3) ✅ COMPLETED
+- ✅ Layout MainActivity (2 kolom)
+  - activity_main.xml dengan split screen design
+  - Header dengan toolbar & SearchView
+  - RecyclerView untuk products (kiri) & cart (kanan)
+  - Bottom section dengan subtotal & checkout button
+- ✅ RecyclerView Adapter untuk Product List
+  - ProductAdapter.kt dengan ViewHolder pattern
+  - DiffUtil untuk efisiensi update
+  - Emoji icon mapping per kategori produk
+  - Stock validation & disabled state
+- ✅ RecyclerView Adapter untuk Cart
+  - CartAdapter.kt dengan quantity controls
+  - Increment/Decrement buttons
+  - Remove item functionality
+  - Real-time subtotal calculation per item
+- ✅ Implement SearchView
+  - Integrated di AppBarLayout
+  - Ready untuk filtering products
+- ✅ Design payment dialog
+  - dialog_payment.xml dengan Material Design
+  - Input uang dengan TextInputLayout
+  - Quick amount buttons (10K, 20K, 50K, 100K, Uang Pas)
+  - Real-time kembalian calculation
+  - Error message untuk validasi
 
 ### Phase 4: Main Activity Implementation (Hari 3-4)
 - [ ] Observe products dari ViewModel
@@ -450,10 +469,10 @@ implementation("com.google.android.material:material:1.11.0")
 1. ✅ **Room Database** properly implemented (Entity + DAO)
 2. ✅ **MVVM Architecture** clearly separated
 3. ✅ **Coroutines** untuk async operations
-4. ✅ **RecyclerView** dengan Adapter pattern
-5. ✅ **Stock Update** logic must work correctly
-6. ✅ **JSON Handling** untuk transaction items
-7. ✅ **UI/UX** clean dan user-friendly
+4. ✅ **RecyclerView** dengan Adapter pattern (ProductAdapter & CartAdapter)
+5. ✅ **Stock Update** logic must work correctly (implemented in ViewModel)
+6. ✅ **JSON Handling** untuk transaction items (ready in ViewModel)
+7. ⏳ **UI/UX** clean dan user-friendly (XML layouts ready, waiting MainActivity impl)
 
 ---
 
@@ -479,3 +498,54 @@ Aplikasi ini mendemonstrasikan pemahaman:
 **Tanggal**: Januari 2025  
 **Versi**: 1.0  
 **Status**: 🚧 In Development
+
+---
+
+## 📂 File Structure (Updated Phase 3)
+
+```
+/app/
+├── app/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/kelompok5/penjualan/
+│   │   │   │   ├── data/
+│   │   │   │   │   ├── database/
+│   │   │   │   │   │   └── AppDatabase.kt ✅
+│   │   │   │   │   ├── dao/
+│   │   │   │   │   │   ├── ProductDao.kt ✅
+│   │   │   │   │   │   └── TransactionDao.kt ✅
+│   │   │   │   │   ├── entity/
+│   │   │   │   │   │   ├── Product.kt ✅
+│   │   │   │   │   │   ├── Transaction.kt ✅
+│   │   │   │   │   │   ├── CartItem.kt ✅
+│   │   │   │   │   │   └── TransactionItem.kt ✅
+│   │   │   │   │   └── repository/
+│   │   │   │   │       ├── ProductRepository.kt ✅
+│   │   │   │   │       └── TransactionRepository.kt ✅
+│   │   │   │   ├── ui/
+│   │   │   │   │   └── adapter/
+│   │   │   │   │       ├── ProductAdapter.kt ✅ (NEW)
+│   │   │   │   │       └── CartAdapter.kt ✅ (NEW)
+│   │   │   │   ├── viewmodel/
+│   │   │   │   │   ├── MainViewModel.kt ✅
+│   │   │   │   │   └── MainViewModelFactory.kt ✅
+│   │   │   │   └── utils/
+│   │   │   │       ├── CurrencyUtils.kt ✅
+│   │   │   │       └── DateUtils.kt ✅
+│   │   │   └── res/
+│   │   │       └── layout/
+│   │   │           ├── activity_main.xml ✅ (NEW)
+│   │   │           ├── item_product.xml ✅ (NEW)
+│   │   │           ├── item_cart.xml ✅ (NEW)
+│   │   │           └── dialog_payment.xml ✅ (NEW)
+│   │   └── ...
+├── docs/
+│   └── rencana_aplikasi.md ✅ (UPDATED)
+└── ...
+```
+
+**Phase 3 Files Summary:**
+- 4 XML Layout files (activity_main, item_product, item_cart, dialog_payment)
+- 2 Kotlin Adapter files (ProductAdapter, CartAdapter)
+- Total: 6 new files created
