@@ -27,7 +27,7 @@ import com.kelompok5.penjualan.viewmodel.MainViewModelFactory
 
 /**
  * MainActivity - Layar Utama Kasir
- * 
+ *
  * Features:
  * - Tampil daftar produk (2 kolom layout)
  * - Tambah ke keranjang
@@ -35,65 +35,63 @@ import com.kelompok5.penjualan.viewmodel.MainViewModelFactory
  * - Search/filter produk
  * - Checkout dengan payment dialog
  * - Navigate ke Receipt Activity
- * 
+ *
  * Architecture: MVVM Pattern
  */
 class MainActivity : AppCompatActivity() {
 
     // ViewModel
     private lateinit var viewModel: MainViewModel
-    
+
     // RecyclerView & Adapters
     private lateinit var recyclerViewProducts: RecyclerView
     private lateinit var recyclerViewCart: RecyclerView
     private lateinit var productAdapter: ProductAdapter
     private lateinit var cartAdapter: CartAdapter
-    
+
     // Views
     private lateinit var searchView: SearchView
     private lateinit var textSubtotal: TextView
     private lateinit var btnCheckout: Button
     private lateinit var btnClearCart: Button
     private lateinit var progressBar: ProgressBar
-    private lateinit var emptyProductsText: TextView
-    private lateinit var emptyCartText: TextView
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
+
         // Initialize ViewModel
         initViewModel()
-        
+
         // Initialize Views
         initViews()
-        
+
         // Setup RecyclerViews
         setupRecyclerViews()
-        
+
         // Setup Observers
         setupObservers()
-        
+
         // Setup Listeners
         setupListeners()
     }
-    
+
     /**
      * Initialize ViewModel dengan Factory Pattern
      */
     private fun initViewModel() {
         // Get database instance
-        val database = AppDatabase.getInstance(applicationContext)
-        
+        val database = AppDatabase.getDatabase(applicationContext)
+
         // Create repositories
         val productRepository = ProductRepository(database.productDao())
         val transactionRepository = TransactionRepository(database.transactionDao())
-        
+
         // Create ViewModel with factory
         val factory = MainViewModelFactory(productRepository, transactionRepository)
         viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
     }
-    
+
     /**
      * Initialize semua views
      */
@@ -105,10 +103,8 @@ class MainActivity : AppCompatActivity() {
         btnCheckout = findViewById(R.id.btnCheckout)
         btnClearCart = findViewById(R.id.btnClearCart)
         progressBar = findViewById(R.id.progressBar)
-        emptyProductsText = findViewById(R.id.emptyProductsText)
-        emptyCartText = findViewById(R.id.emptyCartText)
     }
-    
+
     /**
      * Setup RecyclerViews dengan Adapters
      */
@@ -119,13 +115,13 @@ class MainActivity : AppCompatActivity() {
             viewModel.addToCart(product)
             Toast.makeText(this, "✓ ${product.name} ditambahkan", Toast.LENGTH_SHORT).show()
         }
-        
+
         recyclerViewProducts.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = productAdapter
             setHasFixedSize(true)
         }
-        
+
         // Cart RecyclerView
         cartAdapter = CartAdapter(
             onIncrementQuantity = { productId ->
@@ -139,14 +135,14 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Item dihapus", Toast.LENGTH_SHORT).show()
             }
         )
-        
+
         recyclerViewCart.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = cartAdapter
             setHasFixedSize(true)
         }
     }
-    
+
     /**
      * Setup LiveData Observers
      */
@@ -154,30 +150,12 @@ class MainActivity : AppCompatActivity() {
         // Observe products list
         viewModel.products.observe(this) { products ->
             productAdapter.submitList(products)
-            
-            // Show/hide empty state
-            if (products.isEmpty()) {
-                emptyProductsText.visibility = View.VISIBLE
-                recyclerViewProducts.visibility = View.GONE
-            } else {
-                emptyProductsText.visibility = View.GONE
-                recyclerViewProducts.visibility = View.VISIBLE
-            }
         }
-        
+
         // Observe cart items
         viewModel.cartItems.observe(this) { cartItems ->
             cartAdapter.submitList(cartItems)
-            
-            // Show/hide empty state
-            if (cartItems.isEmpty()) {
-                emptyCartText.visibility = View.VISIBLE
-                recyclerViewCart.visibility = View.GONE
-            } else {
-                emptyCartText.visibility = View.GONE
-                recyclerViewCart.visibility = View.VISIBLE
-            }
-            
+
             // Enable/disable buttons based on cart
             val isEmpty = cartItems.isEmpty()
             btnCheckout.isEnabled = !isEmpty
@@ -185,17 +163,17 @@ class MainActivity : AppCompatActivity() {
             btnCheckout.alpha = if (isEmpty) 0.5f else 1.0f
             btnClearCart.alpha = if (isEmpty) 0.5f else 1.0f
         }
-        
+
         // Observe subtotal
         viewModel.subtotal.observe(this) { subtotal ->
             textSubtotal.text = CurrencyUtils.formatRupiah(subtotal)
         }
-        
+
         // Observe loading state
         viewModel.isLoading.observe(this) { isLoading ->
             progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
-        
+
         // Observe error messages
         viewModel.errorMessage.observe(this) { errorMessage ->
             errorMessage?.let {
@@ -203,20 +181,20 @@ class MainActivity : AppCompatActivity() {
                 viewModel.clearError()
             }
         }
-        
+
         // Observe checkout success
         viewModel.checkoutSuccess.observe(this) { transactionId ->
             transactionId?.let {
                 // TODO: Navigate to ReceiptActivity with transaction ID
                 Toast.makeText(this, "✓ Transaksi berhasil! ID: $it", Toast.LENGTH_LONG).show()
                 viewModel.resetCheckoutSuccess()
-                
+
                 // Note: ReceiptActivity akan dibuat di Phase 5
                 // Intent akan ditambahkan nanti
             }
         }
     }
-    
+
     /**
      * Setup semua click listeners
      */
@@ -227,18 +205,18 @@ class MainActivity : AppCompatActivity() {
                 query?.let { viewModel.searchProducts(it) }
                 return true
             }
-            
+
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let { viewModel.searchProducts(it) }
                 return true
             }
         })
-        
+
         // Clear cart button
         btnClearCart.setOnClickListener {
             showClearCartConfirmation()
         }
-        
+
         // Checkout button
         btnCheckout.setOnClickListener {
             if (!viewModel.isCartEmpty()) {
@@ -248,7 +226,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    
+
     /**
      * Show confirmation dialog untuk clear cart
      */
@@ -263,14 +241,14 @@ class MainActivity : AppCompatActivity() {
             .setNegativeButton("Batal", null)
             .show()
     }
-    
+
     /**
      * Show payment dialog untuk checkout
      */
     private fun showPaymentDialog() {
         // Inflate custom dialog layout
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_payment, null)
-        
+
         // Get views from dialog
         val textTotalAmount: TextView = dialogView.findViewById(R.id.textTotalAmount)
         val editMoneyPaid: TextInputEditText = dialogView.findViewById(R.id.editMoneyPaid)
@@ -283,24 +261,24 @@ class MainActivity : AppCompatActivity() {
         val btnExactAmount: Button = dialogView.findViewById(R.id.btnExactAmount)
         val btnCancel: Button = dialogView.findViewById(R.id.btnCancel)
         val btnConfirmPayment: Button = dialogView.findViewById(R.id.btnConfirmPayment)
-        
+
         // Get total amount from ViewModel
         val totalAmount = viewModel.subtotal.value ?: 0.0
         textTotalAmount.text = CurrencyUtils.formatRupiah(totalAmount)
-        
+
         // Create dialog
         val dialog = AlertDialog.Builder(this)
             .setView(dialogView)
             .setCancelable(true)
             .create()
-        
+
         // Function to calculate change
         fun calculateChange() {
             val moneyPaidText = editMoneyPaid.text.toString()
             if (moneyPaidText.isNotEmpty()) {
                 val moneyPaid = moneyPaidText.toDoubleOrNull() ?: 0.0
                 val change = moneyPaid - totalAmount
-                
+
                 if (change >= 0) {
                     textChangeAmount.text = CurrencyUtils.formatRupiah(change)
                     textChangeAmount.setTextColor(getColor(R.color.oasis_green))
@@ -317,7 +295,7 @@ class MainActivity : AppCompatActivity() {
                 textErrorMessage.visibility = View.GONE
             }
         }
-        
+
         // Text change listener untuk real-time calculation
         editMoneyPaid.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -326,44 +304,44 @@ class MainActivity : AppCompatActivity() {
                 calculateChange()
             }
         })
-        
+
         // Quick amount buttons
         btnQuick10k.setOnClickListener {
             editMoneyPaid.setText("10000")
             calculateChange()
         }
-        
+
         btnQuick20k.setOnClickListener {
             editMoneyPaid.setText("20000")
             calculateChange()
         }
-        
+
         btnQuick50k.setOnClickListener {
             editMoneyPaid.setText("50000")
             calculateChange()
         }
-        
+
         btnQuick100k.setOnClickListener {
             editMoneyPaid.setText("100000")
             calculateChange()
         }
-        
+
         btnExactAmount.setOnClickListener {
             editMoneyPaid.setText(totalAmount.toInt().toString())
             calculateChange()
         }
-        
+
         // Cancel button
         btnCancel.setOnClickListener {
             dialog.dismiss()
         }
-        
+
         // Confirm payment button
         btnConfirmPayment.setOnClickListener {
             val moneyPaidText = editMoneyPaid.text.toString()
             if (moneyPaidText.isNotEmpty()) {
                 val moneyPaid = moneyPaidText.toDoubleOrNull() ?: 0.0
-                
+
                 if (moneyPaid >= totalAmount) {
                     // Process checkout
                     viewModel.checkout(moneyPaid)
@@ -375,7 +353,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Masukkan jumlah uang", Toast.LENGTH_SHORT).show()
             }
         }
-        
+
         // Show dialog
         dialog.show()
     }
